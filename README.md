@@ -1,5 +1,5 @@
 # Zusy
-# Kali Linux Tool
+# Kali Linux Tool ![KaliLinuxLogo](https://github.com/MMOGAMER0101/Zusy/assets/153848626/38fa9f47-f5fc-4216-be1a-dc0f40ad4de9)
 
 Command :
 
