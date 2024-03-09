@@ -16,6 +16,9 @@ python3 OpenZusy.py
 
 
 ------{Menu}------
+
+![Zusy](https://github.com/MMOGAMER0101/Zusy/assets/153848626/30cbe4ac-c018-42d3-b9bb-d1d69a8f4be2)
+
  
 
-![ZusyMenu](https://github.com/MMOGAMER0101/Zusy/assets/153848626/48f522d2-51b0-4200-942c-0048e7e77840)
+
