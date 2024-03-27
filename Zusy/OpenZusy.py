@@ -52,9 +52,23 @@ def create_trojan():
     input("\nPress Enter to continue...")
     main_menu()
 
+def ip_tracer():
+    clear_screen()
+    print("[0] Back\n")
+    target_ip = input("Enter IP Address: ")
+    if target_ip == "0":
+        main_menu()
+    ip_tracer_command = f"curl ipinfo.io/{target_ip}"
+    print("Please wait...")
+    process = run(ip_tracer_command, shell=True)
+    if process.stdout is not None:
+        print(process.stdout.decode())
+    else:
+        print("")
+    input("\nPress Enter to go back...")
+    main_menu()
 
 
-    
 def nmap_scan():
     clear_screen()
     print("[0] Back\n")
@@ -110,7 +124,22 @@ def open_metasploit():
     
 def cupp_open():
     clear_screen()
-    process = run("cupp -i", shell=True)    
+    process = run("which cupp", shell=True, stdout=PIPE, stderr=PIPE)
+    if process.returncode == 0:
+        print("Cupp is installed. Opening...")
+        run("cupp -i", shell=True)
+    else:
+        print("Cupp is not installed. Installing...")
+        install_command = "sudo apt install cupp"
+        process = run(install_command, shell=True)
+        if process.returncode == 0:
+            print("Cupp installed successfully. Opening...")
+            run("cupp -i", shell=True)
+        else:
+            print("Failed to install Cupp.")
+    input("\nPress Enter to go back...")
+    main_menu()
+ 
     
 def update_kali():
     clear_screen()
@@ -152,10 +181,10 @@ def main_menu():
       ╔╝═╚═╣╚═╝║╚═╝║─║║──
       ╚════╩═══╩═══╝─╚╝──
 -------{ By No_Name.exe }-------
-                        v 1.1
+                        v 1.2
     """
     print(logo)
-    print("[1] Nmap Scan\n[2] Open Metasploit\n[3] Social Engineering\n[4] SQL Injection\n[5] Commix\n[6] Restart System\n[7] Become Windows (on/off)\n[8] Upgrade System\n[9] Password Found\n[10] System About\n[11] Create Trojan\n[99] Exit\n")
+    print("[1] Nmap Scan\n[2] Open Metasploit\n[3] Social Engineering\n[4] SQL Injection\n[5] Commix\n[6] Restart System\n[7] Become Windows (on/off)\n[8] Upgrade System\n[9] Password Found\n[10] System About\n[11] Create Trojan\n[12] IP-Tracer\n[99] Exit\n")
     choice = input("Zusy ~$ ")
 
     if choice == "1":
@@ -179,7 +208,9 @@ def main_menu():
     elif choice == "10":
         ifconfig()      
     elif choice == "11":
-        create_trojan()               
+        create_trojan()   
+    elif choice == "12":
+        ip_tracer()                
     elif choice == "99":
         print("\nThanks For Using!!!")
     else:
