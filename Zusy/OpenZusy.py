@@ -52,21 +52,35 @@ def create_trojan():
     input("\nPress Enter to continue...")
     main_menu()
 
+import subprocess
+
+def clear_screen():
+    # Ekranı temizlemek için uygun bir komut kullanın
+    subprocess.run("clear", shell=True)
+
 def ip_tracer():
     clear_screen()
     print("[0] Back\n")
     target_ip = input("Enter IP Address: ")
     if target_ip == "0":
         main_menu()
+    
+    if not target_ip:
+        print("\033[91mError: Please enter a valid IP address\033[0m")
+        input("\nPress Enter to go back...")
+        main_menu()
+        return
+    
     ip_tracer_command = f"curl ipinfo.io/{target_ip}"
     print("Please wait...")
-    process = run(ip_tracer_command, shell=True)
+    process = subprocess.run(ip_tracer_command, shell=True, capture_output=True, text=True)
     if process.stdout is not None:
-        print(process.stdout.decode())
+        print(process.stdout)
     else:
         print("")
     input("\nPress Enter to go back...")
     main_menu()
+
 
 
 def nmap_scan():
