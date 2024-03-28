@@ -8,8 +8,6 @@ Command :
 
 cd Zusy
 
-cd Zusy
-
 python3 OpenZusy.py
 
 ![Zusy](https://github.com/MMOGAMER0101/Zusy/assets/153848626/a3ea1469-760a-48bf-a597-d5dc0903ae99)
