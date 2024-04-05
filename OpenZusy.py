@@ -235,7 +235,7 @@ def main_menu():
                         v 1.4
     """
     print(logo)
-    print("[1] Nmap Scan\n[2] Open Metasploit\n[3] Social Engineering\n[4] SQL Injection\n[5] Commix\n[6] Restart System\n[7] Become Windows (on/off)\n[8] Upgrade System\n[9] Password Found\n[10] System About\n[11] Create Trojan\n[12] IP-Tracer\n[13] Netdiscover\n[99] Exit\n"
+    print("[1] Nmap Scan\n[2] Open Metasploit\n[3] Social Engineering\n[4] SQL Injection\n[5] Commix\n[6] Restart System\n[7] Become Windows (on/off)\n[8] Upgrade System\n[9] Password Found\n[10] System About\n[11] Create Trojan\n[12] IP-Tracer\n[13] Netdiscover\n[14] ThreatManager\n[99] Exit\n"
     "\n[100] Update\n")
     choice = input("Zusy ~$ ")
     if choice == "1":
@@ -264,6 +264,8 @@ def main_menu():
         ip_tracer() 
     elif choice == "13":
         netdiscover()                    
+    elif choice == "14":
+        threat_manager() # Fonksiyonu çağırarak işlemi gerçekleştir
     elif choice == "100":
         update_tool()  
     elif choice == "99":
@@ -272,12 +274,12 @@ def main_menu():
         print("\nError: Please Try Again")
         main_menu()
 
-def update_tool():
-    try:
-        print("Updating tool...")
-        # Doğrudan komutları çalıştır
-        subprocess.run("cd .. && rm -rf Zusy && git clone https://github.com/MMOGAMER0101/Zusy.git && cd Zusy && python3 OpenZusy.py", shell=True)
-    except Exception as e:
-        print("Error updating tool:", e)
+def threat_manager():
+    import os
+    if os.path.isdir("ThreatManager"):
+        os.system("cd .. && cd ThreatManager && python3 OpenThreat.py")
+    else:
+        os.system("cd .. && git clone https://github.com/NoNameZusy/ThreatManager.git")
+        os.system("cd .. && cd ThreatManager && python3 OpenThreat.py")
 
 main_menu()
