@@ -123,7 +123,7 @@ def nmap_scan():
     
 def netdiscover():
     clear_screen()
-    netdiscover_command = f"netdiscover"
+    netdiscover_command = f"sudo netdiscover"
     print("Please Wait")
     process = run(netdiscover_command, shell=True)
     if process.stdout is not None:
