@@ -1,10 +1,18 @@
+# Credits
+# Creator : No_Name.exe
+# Zusy
+
 from subprocess import run, PIPE
 import os
+from difflib import get_close_matches
 
 def clear_screen():
     os.system('clear')
+from subprocess import run, PIPE
+import os
 
 def get_kali_ip():
+    # Kali Linux'un IP adresini almak için ifconfig komutunu kullanın
     process = run("ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1' | head -n 1", shell=True, stdout=PIPE, text=True)
     if process.returncode == 0:
         return process.stdout.strip()
@@ -37,7 +45,7 @@ def create_trojan():
     
     clear_screen()
     lhost = input("LHOST = ")
-    if not lhost:
+    if not lhost:  # Eğer kullanıcı boş bir giriş yaparsa, Kali Linux'un IP adresini al
         lhost = get_kali_ip()
         if not lhost:
             print("Failed to get Kali Linux IP address.")
@@ -65,6 +73,13 @@ def create_trojan():
     input("\nPress Enter to continue...")
     main_menu()
 
+
+import subprocess
+
+def clear_screen():
+    # Ekranı temizlemek için uygun bir komut kullanın
+    subprocess.run("clear", shell=True)
+
 def ip_tracer():
     clear_screen()
     print("[0] Back\n")
@@ -80,13 +95,15 @@ def ip_tracer():
     
     ip_tracer_command = f"curl ipinfo.io/{target_ip}"
     print("Please wait...")
-    process = run(ip_tracer_command, shell=True, capture_output=True, text=True)
+    process = subprocess.run(ip_tracer_command, shell=True, capture_output=True, text=True)
     if process.stdout is not None:
         print(process.stdout)
     else:
         print("")
     input("\nPress Enter to go back...")
     main_menu()
+
+
 
 def nmap_scan():
     clear_screen()
@@ -102,8 +119,8 @@ def nmap_scan():
     else:
         print("Nmap scan completed.")
     input("\nPress Enter to go back...")
-    main_menu()
-
+    main_menu()    
+    
 def netdiscover():
     clear_screen()
     netdiscover_command = f"netdiscover"
@@ -114,8 +131,8 @@ def netdiscover():
     else:
         print("")
     input("\nPress Enter to go back...")
-    main_menu()
-
+    main_menu()        
+    
 def sql_scan():
     clear_screen()
     print("[0] Back\n")
@@ -130,8 +147,8 @@ def sql_scan():
     else:
         print("Scan completed.")
     input("\nPress Enter to go back...")
-    main_menu()
-
+    main_menu()    
+    
 def commix_scan():
     clear_screen()
     print("[0] Back\n")
@@ -146,12 +163,13 @@ def commix_scan():
     else:
         print("Scan completed.")
     input("\nPress Enter to go back...")
-    main_menu()
+    main_menu()        
+
 
 def open_metasploit():
     clear_screen()
     process = run("msfconsole -q", shell=True)
-
+    
 def cupp_open():
     clear_screen()
     process = run("which cupp", shell=True, stdout=PIPE, stderr=PIPE)
@@ -169,11 +187,12 @@ def cupp_open():
             print("Failed to install Cupp.")
     input("\nPress Enter to go back...")
     main_menu()
-
+ 
+    
 def update_kali():
     clear_screen()
-    process = run("sudo apt update && sudo apt upgrade", shell=True)
-
+    process = run("sudo apt update && sudo apt upgrade", shell=True)    
+    
 def ifconfig():
     clear_screen()
     process = run("ifconfig", shell=True)
@@ -182,28 +201,28 @@ def ifconfig():
     else:
         print("")
     input("\nPress Enter to go back...")
-    main_menu()
-
+    main_menu()    
+    
 def kali_undercover():
     clear_screen()
-    process = run("kali-undercover && python3 OpenZusy.py", shell=True)
+    process = run("kali-undercover && python3 OpenZusy.py", shell=True)    
+    
+import subprocess
 
 def reboot_system():
     clear_screen()
     input("Press Enter to continue...")
     process = subprocess.run("sudo reboot", shell=True)
+  
 
 def social_engineering():
     clear_screen()
     process = run("setoolkit", shell=True)
 
-def threat_manager():
-    clear_screen()
-    if os.path.isdir("ThreatManager"):
-        os.system("cd .. && cd ThreatManager && python3 OpenThreat.py")
-    else:
-        os.system("cd .. && git clone https://github.com/NoNameZusy/ThreatManager.git")
-        os.system("cd .. && cd ThreatManager && python3 OpenThreat.py")
+import os
+import subprocess
+
+import subprocess
 
 def main_menu():
     clear_screen()
@@ -218,7 +237,8 @@ def main_menu():
                         v 1.4
     """
     print(logo)
-    print("[1] Nmap Scan\n[2] Open Metasploit\n[3] Social Engineering\n[4] SQL Injection\n[5] Commix\n[6] Restart System\n[7] Become Windows (on/off)\n[8] Upgrade System\n[9] Password Found\n[10] System About\n[11] Create Trojan\n[12] IP-Tracer\n[13] Netdiscover\n[14] ThreatManager\n[99] Exit\n")
+    print("[1] Nmap Scan\n[2] Open Metasploit\n[3] Social Engineering\n[4] SQL Injection\n[5] Commix\n[6] Restart System\n[7] Become Windows (on/off)\n[8] Upgrade System\n[9] Password Found\n[10] System About\n[11] Create Trojan\n[12] IP-Tracer\n[13] Netdiscover\n[14] ThreatManager\n[99] Exit\n"
+    "\n[100] Update\n")
     choice = input("Zusy ~$ ")
     if choice == "1":
         nmap_scan()
@@ -245,13 +265,44 @@ def main_menu():
     elif choice == "12":
         ip_tracer() 
     elif choice == "13":
-        netdiscover()                    
+        netdiscover()   
     elif choice == "14":
-        threat_manager():  
+        netdiscover()                     
+    elif choice == "100":
+        update_tool()  
     elif choice == "99":
         print("\nThanks For Using!!!")
     else:
         print("\nError: Please Try Again")
         main_menu()
+
+def update_tool():
+    try:
+        print("Updating tool...")
+        subprocess.run(["cd", ".."])
+        subprocess.run(["rm", "-rf", "Zusy"])
+        subprocess.run(["git", "clone", "https://github.com/MMOGAMER0101/Zusy.git"])
+        subprocess.run(["cd", "Zusy"])
+        subprocess.run(["python3", "OpenZusy.py"])
+    except Exception as e:
+        print("Error updating tool:", e)
+        
+def threat_manager():
+    import os
+    if os.path.isdir("ThreatManager"):
+        os.system("cd .. && cd ThreatManager && python3 OpenThreat.py")
+    else:
+        os.system("cd .. && git clone https://github.com/NoNameZusy/ThreatManager.git")
+        os.system("cd .. && cd ThreatManager && python3 OpenThreat.py")        
+
+main_menu()
+
+def update_tool():
+    try:
+        print("Updating tool...")
+        # Doğrudan komutları çalıştır
+        subprocess.run("cd .. && rm -rf Zusy && git clone https://github.com/MMOGAMER0101/Zusy.git && cd Zusy && python3 OpenZusy.py", shell=True)
+    except Exception as e:
+        print("Error updating tool:", e)
 
 main_menu()
