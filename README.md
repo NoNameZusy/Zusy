@@ -9,7 +9,8 @@
 
 ------{Menu}------
 
-![image](https://github.com/MMOGAMER0101/Zusy/assets/153848626/8e3b1083-915a-404c-bd65-fdb3ec9aef21)
+![image](https://github.com/NoNameZusy/Zusy/assets/153848626/c67326b3-d9e9-4cfb-a298-2ad4f305fdf4)
+
 
 Command :
 
