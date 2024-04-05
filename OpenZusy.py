@@ -267,7 +267,7 @@ def main_menu():
     elif choice == "13":
         netdiscover()   
     elif choice == "14":
-        netdiscover()                     
+        threat_manager()                     
     elif choice == "100":
         update_tool()  
     elif choice == "99":
@@ -276,16 +276,6 @@ def main_menu():
         print("\nError: Please Try Again")
         main_menu()
 
-def update_tool():
-    try:
-        print("Updating tool...")
-        subprocess.run(["cd", ".."])
-        subprocess.run(["rm", "-rf", "Zusy"])
-        subprocess.run(["git", "clone", "https://github.com/MMOGAMER0101/Zusy.git"])
-        subprocess.run(["cd", "Zusy"])
-        subprocess.run(["python3", "OpenZusy.py"])
-    except Exception as e:
-        print("Error updating tool:", e)
         
 def threat_manager():
     import os
