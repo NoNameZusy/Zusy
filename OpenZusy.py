@@ -218,6 +218,13 @@ def reboot_system():
 def social_engineering():
     clear_screen()
     process = run("setoolkit", shell=True)
+def update_tool():
+    try:
+        print("Updating tool...")
+        # Doğrudan komutları çalıştır
+        subprocess.run("cd .. && rm -rf Zusy && git clone https://github.com/MMOGAMER0101/Zusy.git && cd Zusy && python3 OpenZusy.py", shell=True)
+    except Exception as e:
+        print("Error updating tool:", e)    
 
 import os
 import subprocess
@@ -283,16 +290,6 @@ def threat_manager():
         os.system("cd .. && cd ThreatManager && python3 OpenThreat.py")
     else:
         os.system("cd .. && git clone https://github.com/NoNameZusy/ThreatManager.git")
-        os.system("cd .. && cd ThreatManager && python3 OpenThreat.py")        
-
-main_menu()
-
-def update_tool():
-    try:
-        print("Updating tool...")
-        # Doğrudan komutları çalıştır
-        subprocess.run("cd .. && rm -rf Zusy && git clone https://github.com/MMOGAMER0101/Zusy.git && cd Zusy && python3 OpenZusy.py", shell=True)
-    except Exception as e:
-        print("Error updating tool:", e)
+        os.system("cd .. && cd ThreatManager && python3 OpenThreat.py")       
 
 main_menu()
