@@ -12,11 +12,11 @@
 ![image](https://github.com/NoNameZusy/Zusy/assets/153848626/c67326b3-d9e9-4cfb-a298-2ad4f305fdf4)
 
 
-Command :
+# Command :
 
-cd Zusy
+`` cd Zusy ``
 
-python3 OpenZusy.py
+`` python3 OpenZusy.py ``
 
 
 
