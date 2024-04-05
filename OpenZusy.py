@@ -218,8 +218,7 @@ def main_menu():
                         v 1.4
     """
     print(logo)
-    print("[1] Nmap Scan\n[2] Open Metasploit\n[3] Social Engineering\n[4] SQL Injection\n[5] Commix\n[6] Restart System\n[7] Become Windows (on/off)\n[8] Upgrade System\n[9] Password Found\n[10] System About\n[11] Create Trojan\n[12] IP-Tracer\n[13] Netdiscover\n[14] ThreatManager\n[99] Exit\n"
-    "\n[100] Update\n")
+    print("[1] Nmap Scan\n[2] Open Metasploit\n[3] Social Engineering\n[4] SQL Injection\n[5] Commix\n[6] Restart System\n[7] Become Windows (on/off)\n[8] Upgrade System\n[9] Password Found\n[10] System About\n[11] Create Trojan\n[12] IP-Tracer\n[13] Netdiscover\n[14] ThreatManager\n[99] Exit\n")
     choice = input("Zusy ~$ ")
     if choice == "1":
         nmap_scan()
@@ -248,9 +247,7 @@ def main_menu():
     elif choice == "13":
         netdiscover()                    
     elif choice == "14":
-        threat_manager() 
-    elif choice == "100":
-        update_kali()  
+        threat_manager():  
     elif choice == "99":
         print("\nThanks For Using!!!")
     else:
