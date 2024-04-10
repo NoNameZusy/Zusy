@@ -14,9 +14,9 @@
 
 # Command :
 
-`` cd Zusy ``
+``` cd Zusy ```
 
-`` python3 OpenZusy.py ``
+``` python3 OpenZusy.py ```
 
 
 
