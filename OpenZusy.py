@@ -111,6 +111,7 @@ def nmap_scan():
     target_ip = input("Target IP: ")
     if target_ip == "0":
         main_menu()
+        return
     nmap_command = f"nmap -p1-65535 -sV -sS -T4 -A -O {target_ip}"
     print("Please Wait")
     process = run(nmap_command, shell=True)
@@ -121,9 +122,22 @@ def nmap_scan():
     input("\nPress Enter to go back...")
     main_menu()    
     
+def port_scan():
+    clear_screen()
+    port_scancommand = f"python3 portscan.py"
+    print("Please Wait")
+    process = run(port_scancommand, shell=True)
+    if process.stdout is not None:
+        print(process.stdout.decode())
+    else:
+        print("")    
+        print("Port scan completed.")
+    input("\nPress Enter to go back...")
+    main_menu()     
+    
 def netdiscover():
     clear_screen()
-    netdiscover_command = f"sudo netdiscover"
+    netdiscover_command = f"netdiscover"
     print("Please Wait")
     process = run(netdiscover_command, shell=True)
     if process.stdout is not None:
@@ -218,13 +232,14 @@ def reboot_system():
 def social_engineering():
     clear_screen()
     process = run("setoolkit", shell=True)
-def update_tool():
-    try:
-        print("Updating tool...")
-        # Doğrudan komutları çalıştır
-        subprocess.run("cd .. && rm -rf Zusy && git clone https://github.com/MMOGAMER0101/Zusy.git && cd Zusy && python3 OpenZusy.py", shell=True)
-    except Exception as e:
-        print("Error updating tool:", e)    
+    
+def InformationManager():
+    import os
+    if os.path.isdir("InformationManager"):
+        os.system("cd .. && cd InformationManager && python3 Information.py")
+    else:
+        os.system("cd .. && git clone https://github.com/NoNameZusy/InformationManager.git")
+        os.system("cd .. && cd InformationManager && python3 Information.py")       
 
 import os
 import subprocess
@@ -241,10 +256,10 @@ def main_menu():
       ╔╝═╚═╣╚═╝║╚═╝║─║║──
       ╚════╩═══╩═══╝─╚╝──
 -------{ By No_Name.exe }-------
-                        v 1.4
+                        v 1.5
     """
     print(logo)
-    print("[1] Nmap Scan\n[2] Open Metasploit\n[3] Social Engineering\n[4] SQL Injection\n[5] Commix\n[6] Restart System\n[7] Become Windows (on/off)\n[8] Upgrade System\n[9] Password Found\n[10] System About\n[11] Create Trojan\n[12] IP-Tracer\n[13] Netdiscover\n[14] ThreatManager\n[99] Exit\n"
+    print("[1] Nmap Scan\n[2] Open Metasploit\n[3] Social Engineering\n[4] SQL Injection\n[5] Commix\n[6] Restart System\n[7] Become Windows (on/off)\n[8] Upgrade System\n[9] Password Found\n[10] System About\n[11] Create Trojan\n[12] IP-Tracer\n[13] Netdiscover\n[14] ThreatManager\n[15] Port Scan\n[16] InformationManager\n[99] Exit\n"
     "\n[100] Update\n")
     choice = input("Zusy ~$ ")
     if choice == "1":
@@ -274,7 +289,11 @@ def main_menu():
     elif choice == "13":
         netdiscover()   
     elif choice == "14":
-        threat_manager()                     
+        threat_manager()    
+    elif choice == "15":
+        port_scan() 
+    elif choice == "16":
+        InformationManager()                         
     elif choice == "100":
         update_tool()  
     elif choice == "99":
@@ -290,6 +309,15 @@ def threat_manager():
         os.system("cd .. && cd ThreatManager && python3 OpenThreat.py")
     else:
         os.system("cd .. && git clone https://github.com/NoNameZusy/ThreatManager.git")
-        os.system("cd .. && cd ThreatManager && python3 OpenThreat.py")       
+        os.system("cd .. && cd ThreatManager && python3 OpenThreat.py")        
+
+main_menu()
+
+def update_tool():
+    try:
+        print("Updating tool...")
+        subprocess.run("cd .. && rm -rf Zusy && git clone https://github.com/NoNameZusy/Zusy.git && cd Zusy && python3 OpenZusy.py", shell=True)
+    except Exception as e:
+        print("Error updating tool:", e)
 
 main_menu()
