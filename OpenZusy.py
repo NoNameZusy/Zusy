@@ -220,13 +220,29 @@ def ifconfig():
 def kali_undercover():
     clear_screen()
     process = run("kali-undercover && python3 OpenZusy.py", shell=True)    
+
     
 import subprocess
+
+def update_tool():
+    try:
+        print("Updating tool...")
+        subprocess.run("cd .. && rm -rf Zusy && git clone https://github.com/NoNameZusy/Zusy.git && cd Zusy && python3 OpenZusy.py", shell=True)
+    except Exception as e:
+        print("Error updating tool:", e)
 
 def reboot_system():
     clear_screen()
     input("Press Enter to continue...")
     process = subprocess.run("sudo reboot", shell=True)
+    
+def threat_manager():
+    import os
+    if os.path.isdir("ThreatManager"):
+        os.system("cd .. && cd ThreatManager && python3 OpenThreat.py")
+    else:
+        os.system("cd .. && git clone https://github.com/NoNameZusy/ThreatManager.git")
+        os.system("cd .. && cd ThreatManager && python3 OpenThreat.py")     
   
 
 def social_engineering():
@@ -244,7 +260,6 @@ def InformationManager():
 import os
 import subprocess
 
-import subprocess
 
 def main_menu():
     clear_screen()
@@ -301,23 +316,3 @@ def main_menu():
     else:
         print("\nError: Please Try Again")
         main_menu()
-
-        
-def threat_manager():
-    import os
-    if os.path.isdir("ThreatManager"):
-        os.system("cd .. && cd ThreatManager && python3 OpenThreat.py")
-    else:
-        os.system("cd .. && git clone https://github.com/NoNameZusy/ThreatManager.git")
-        os.system("cd .. && cd ThreatManager && python3 OpenThreat.py")        
-
-main_menu()
-
-def update_tool():
-    try:
-        print("Updating tool...")
-        subprocess.run("cd .. && rm -rf Zusy && git clone https://github.com/NoNameZusy/Zusy.git && cd Zusy && python3 OpenZusy.py", shell=True)
-    except Exception as e:
-        print("Error updating tool:", e)
-
-main_menu()
