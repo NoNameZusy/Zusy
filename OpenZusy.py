@@ -317,5 +317,6 @@ def threat_manager():
         os.system("cd .. && cd ThreatManager && python3 OpenThreat.py")
     else:
         os.system("cd .. && git clone https://github.com/NoNameZusy/ThreatManager.git")
-        os.system("cd .. && cd ThreatManager && python3 OpenThreat.py")        
+        os.system("cd .. && cd ThreatManager && python3 OpenThreat.py")
+main_menu()        
 
