@@ -230,13 +230,7 @@ def update_tool():
         subprocess.run("cd .. && rm -rf Zusy && git clone https://github.com/NoNameZusy/Zusy.git && cd Zusy && python3 OpenZusy.py", shell=True)
     except Exception as e:
         print("Error updating tool:", e)
-        main_menu()
-
-def reboot_system():
-    clear_screen()
-    input("Press Enter to continue...")
-    process = subprocess.run("sudo reboot", shell=True)
-    
+        
 def threat_manager():
     import os
     if os.path.isdir("ThreatManager"):
@@ -244,6 +238,11 @@ def threat_manager():
     else:
         os.system("cd .. && git clone https://github.com/NoNameZusy/ThreatManager.git")
         os.system("cd .. && cd ThreatManager && python3 OpenThreat.py")
+
+def reboot_system():
+    clear_screen()
+    input("Press Enter to continue...")
+    process = subprocess.run("sudo reboot", shell=True) 
   
 
 def social_engineering():
