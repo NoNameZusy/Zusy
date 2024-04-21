@@ -1,18 +1,10 @@
-# Credits
-# Creator : No_Name.exe
-# Zusy
-
 from subprocess import run, PIPE
 import os
-from difflib import get_close_matches
 
 def clear_screen():
     os.system('clear')
-from subprocess import run, PIPE
-import os
 
 def get_kali_ip():
-    # Kali Linux'un IP adresini almak için ifconfig komutunu kullanın
     process = run("ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1' | head -n 1", shell=True, stdout=PIPE, text=True)
     if process.returncode == 0:
         return process.stdout.strip()
@@ -45,7 +37,7 @@ def create_trojan():
     
     clear_screen()
     lhost = input("LHOST = ")
-    if not lhost:  # Eğer kullanıcı boş bir giriş yaparsa, Kali Linux'un IP adresini al
+    if not lhost:
         lhost = get_kali_ip()
         if not lhost:
             print("Failed to get Kali Linux IP address.")
@@ -74,12 +66,6 @@ def create_trojan():
     main_menu()
 
 
-import subprocess
-
-def clear_screen():
-    # Ekranı temizlemek için uygun bir komut kullanın
-    subprocess.run("clear", shell=True)
-
 def ip_tracer():
     clear_screen()
     print("[0] Back\n")
@@ -95,15 +81,13 @@ def ip_tracer():
     
     ip_tracer_command = f"curl ipinfo.io/{target_ip}"
     print("Please wait...")
-    process = subprocess.run(ip_tracer_command, shell=True, capture_output=True, text=True)
+    process = run(ip_tracer_command, shell=True, capture_output=True, text=True)
     if process.stdout is not None:
         print(process.stdout)
     else:
         print("")
     input("\nPress Enter to go back...")
     main_menu()
-
-
 
 def nmap_scan():
     clear_screen()
@@ -120,11 +104,11 @@ def nmap_scan():
     else:
         print("Nmap scan completed.")
     input("\nPress Enter to go back...")
-    main_menu()    
-    
+    main_menu()
+
 def port_scan():
     clear_screen()
-    port_scancommand = f"python3 portscan.py"
+    port_scancommand = "python3 portscan.py"
     print("Please Wait")
     process = run(port_scancommand, shell=True)
     if process.stdout is not None:
@@ -133,11 +117,11 @@ def port_scan():
         print("")    
         print("Port scan completed.")
     input("\nPress Enter to go back...")
-    main_menu()     
-    
+    main_menu() 
+
 def netdiscover():
     clear_screen()
-    netdiscover_command = f"netdiscover"
+    netdiscover_command = "netdiscover"
     print("Please Wait")
     process = run(netdiscover_command, shell=True)
     if process.stdout is not None:
@@ -145,8 +129,8 @@ def netdiscover():
     else:
         print("")
     input("\nPress Enter to go back...")
-    main_menu()        
-    
+    main_menu()
+
 def sql_scan():
     clear_screen()
     print("[0] Back\n")
@@ -161,8 +145,8 @@ def sql_scan():
     else:
         print("Scan completed.")
     input("\nPress Enter to go back...")
-    main_menu()    
-    
+    main_menu()
+
 def commix_scan():
     clear_screen()
     print("[0] Back\n")
@@ -177,16 +161,15 @@ def commix_scan():
     else:
         print("Scan completed.")
     input("\nPress Enter to go back...")
-    main_menu()        
-
+    main_menu()
 
 def open_metasploit():
     clear_screen()
-    process = run("msfconsole -q", shell=True)
-    
+    run("msfconsole -q", shell=True)
+
 def cupp_open():
     clear_screen()
-    process = run("which cupp", shell=True, stdout=PIPE, stderr=PIPE)
+    process = run("which cupp", shell=True, capture_output=True, text=True)
     if process.returncode == 0:
         print("")
         run("cupp -i", shell=True)
@@ -201,65 +184,53 @@ def cupp_open():
             print("Failed to install Cupp.")
     input("\nPress Enter to go back...")
     main_menu()
- 
-    
+
 def update_kali():
     clear_screen()
-    process = run("sudo apt update && sudo apt upgrade", shell=True)    
-    
+    run("sudo apt update && sudo apt upgrade", shell=True)
+
 def ifconfig():
     clear_screen()
-    process = run("ifconfig", shell=True)
-    if process.stdout is not None:
-        print(process.stdout.decode())
-    else:
-        print("")
+    run("ifconfig", shell=True)
     input("\nPress Enter to go back...")
-    main_menu()    
-    
+    main_menu()
+
 def kali_undercover():
     clear_screen()
-    process = run("kali-undercover && python3 OpenZusy.py", shell=True)    
-
-    
-import subprocess
+    run("kali-undercover && python3 OpenZusy.py", shell=True)
 
 def update_tool():
     try:
         print("Updating tool...")
-        subprocess.run("cd .. && rm -rf Zusy && git clone https://github.com/NoNameZusy/Zusy.git && cd Zusy && python3 OpenZusy.py", shell=True)
+        run("cd .. && rm -rf Zusy && git clone https://github.com/NoNameZusy/Zusy.git && cd Zusy && python3 OpenZusy.py", shell=True)
     except Exception as e:
         print("Error updating tool:", e)
-        
-def threat_manager():
-    import os
-    if os.path.isdir("ThreatManager"):
-        os.system("cd .. && cd ThreatManager && python3 OpenThreat.py")
-    else:
-        os.system("cd .. && git clone https://github.com/NoNameZusy/ThreatManager.git")
-        os.system("cd .. && cd ThreatManager && python3 OpenThreat.py")
+        main_menu()
 
 def reboot_system():
     clear_screen()
     input("Press Enter to continue...")
-    process = subprocess.run("sudo reboot", shell=True) 
-  
+    run("sudo reboot", shell=True)
+
+def threat_manager():
+    import os
+    if os.path.isdir("ThreatManager"):
+        run("cd .. && cd ThreatManager && python3 OpenThreat.py", shell=True)
+    else:
+        run("cd .. && git clone https://github.com/NoNameZusy/ThreatManager.git", shell=True)
+        run("cd .. && cd ThreatManager && python3 OpenThreat.py", shell=True)
 
 def social_engineering():
     clear_screen()
-    process = run("setoolkit", shell=True)
-    
+    run("setoolkit", shell=True)
+
 def InformationManager():
     import os
     if os.path.isdir("InformationManager"):
-        os.system("cd .. && cd InformationManager && python3 Information.py")
+        run("cd .. && cd InformationManager && python3 Information.py", shell=True)
     else:
-        os.system("cd .. && git clone https://github.com/NoNameZusy/InformationManager.git")
-        os.system("cd .. && cd InformationManager && python3 Information.py")       
-
-import os
-import subprocess
-
+        run("cd .. && git clone https://github.com/NoNameZusy/InformationManager.git", shell=True)
+        run("cd .. && cd InformationManager && python3 Information.py", shell=True)
 
 def main_menu():
     clear_screen()
@@ -316,3 +287,6 @@ def main_menu():
     else:
         print("\nError: Please Try Again")
         main_menu()
+
+if __name__ == "__main__":
+    main_menu()
