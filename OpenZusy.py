@@ -228,6 +228,15 @@ def reboot_system():
     input("Press Enter to continue...")
     process = subprocess.run("sudo reboot", shell=True)
   
+def update_tool():
+    try:
+        print("Updating tool...")
+        subprocess.run("cd .. && rm -rf Zusy && git clone https://github.com/NoNameZusy/Zusy.git && cd Zusy && python3 OpenZusy.py", shell=True)
+    except Exception as e:
+        print("Error updating tool:", e)
+
+main_menu()
+
 
 def social_engineering():
     clear_screen()
@@ -313,11 +322,3 @@ def threat_manager():
 
 main_menu()
 
-def update_tool():
-    try:
-        print("Updating tool...")
-        subprocess.run("cd .. && rm -rf Zusy && git clone https://github.com/NoNameZusy/Zusy.git && cd Zusy && python3 OpenZusy.py", shell=True)
-    except Exception as e:
-        print("Error updating tool:", e)
-
-main_menu()
