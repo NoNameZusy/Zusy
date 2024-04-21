@@ -256,7 +256,7 @@ def main_menu():
       ╔╝═╚═╣╚═╝║╚═╝║─║║──
       ╚════╩═══╩═══╝─╚╝──
 -------{ By No_Name.exe }-------
-                        v 1.6
+                        v 1.5
     """
     print(logo)
     print("[1] Nmap Scan\n[2] Open Metasploit\n[3] Social Engineering\n[4] SQL Injection\n[5] Commix\n[6] Restart System\n[7] Become Windows (on/off)\n[8] Upgrade System\n[9] Password Found\n[10] System About\n[11] Create Trojan\n[12] IP-Tracer\n[13] Netdiscover\n[14] ThreatManager\n[15] Port Scan\n[16] InformationManager\n[99] Exit\n"
