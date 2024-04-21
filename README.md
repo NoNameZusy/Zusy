@@ -9,7 +9,8 @@
 
 ------{Menu}------
 
-![image](https://github.com/NoNameZusy/Zusy/assets/153848626/c67326b3-d9e9-4cfb-a298-2ad4f305fdf4)
+![image](https://github.com/NoNameZusy/Zusy/assets/153848626/dc03a1c9-c2f2-4749-8b39-b24de336a3f5)
+
 
 
 # Command :
