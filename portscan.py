@@ -4,11 +4,9 @@ def port_scan(target_host):
     print("[*] Starting port scan on", target_host)
     for port in range(1, 65536):
         try:
-            # Socket oluştur
             s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             s.settimeout(1)
 
-            # Portu tara
             result = s.connect_ex((target_host, port))
             if result == 0:
                 print("[+] Port {} is open".format(port))
