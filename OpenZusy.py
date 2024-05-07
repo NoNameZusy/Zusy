@@ -1,5 +1,16 @@
 from subprocess import run, PIPE
 import os
+import signal
+from colorama import Fore
+
+def signal_handler(sig, frame):
+    print("")
+    print("")
+    print("Thanks for using!!!")
+    exit(0)
+
+signal.signal(signal.SIGINT, signal_handler)
+
 
 def clear_screen():
     os.system('clear')
@@ -41,7 +52,7 @@ def create_trojan():
         lhost = get_kali_ip()
         if not lhost:
             print("Failed to get Kali Linux IP address.")
-            input("\nPress Enter to continue...")
+            input("\nPress Enter to back...")
             main_menu()
     
     lport = input("LPORT = ")
@@ -130,6 +141,8 @@ def netdiscover():
         print("")
     input("\nPress Enter to go back...")
     main_menu()
+    
+    
 
 def sql_scan():
     clear_screen()
@@ -161,6 +174,22 @@ def commix_scan():
     else:
         print("Scan completed.")
     input("\nPress Enter to go back...")
+    main_menu()
+    
+def info():
+    clear_screen()
+    print("Credits : No_Name.exe (Zusy)")
+    print("")
+    print("This tool is made for security testing and cybersecurity! We are not responsible for malicious use!")
+    print("")
+    print("by Offensive Secuirty and No_Name.exe")
+    print("")
+    print("Github : " + Fore.BLUE + "https://github.com/NoNameZusy/" + Fore.WHITE)
+    print("")
+    print("Youtube : " + Fore.BLUE + "https://www.youtube.com/channel/UCql2YVKt-wF1LFuxhAthcaQ" + Fore.WHITE)
+    print("")
+    print("")
+    input("Press Enter to go back...")
     main_menu()
 
 def open_metasploit():
@@ -213,19 +242,37 @@ def reboot_system():
     run("sudo reboot", shell=True)
 
 def threat_manager():
-    import os
     if os.path.isdir("ThreatManager"):
         run("cd .. && cd ThreatManager && python3 OpenThreat.py", shell=True)
     else:
         run("cd .. && git clone https://github.com/NoNameZusy/ThreatManager.git", shell=True)
         run("cd .. && cd ThreatManager && python3 OpenThreat.py", shell=True)
+        
+def No_Escape():
+    if os.path.isdir("No_Escape"):
+        run("cd .. && cd No_Escape && python3 No_Escape.py", shell=True)
+    else:
+        run("cd .. && git clone https://github.com/NoNameZusy/No_Escape.git", shell=True)
+        run("cd .. && cd No_Escape && python3 No_Escape.py", shell=True)        
+        
+def wifi_scan():
+    clear_screen()
+    port_scancommand = "python3 find.py"
+    process = run(port_scancommand, shell=True)
+    if process.stdout is not None:
+        print(process.stdout.decode())
+    else:
+        print("")    
+        print("Wifi scan completed.")
+    input("\nPress Enter to go back...")
+    main_menu() 
+        
 
 def social_engineering():
     clear_screen()
     run("setoolkit", shell=True)
 
 def InformationManager():
-    import os
     if os.path.isdir("InformationManager"):
         run("cd .. && cd InformationManager && python3 Information.py", shell=True)
     else:
@@ -242,11 +289,11 @@ def main_menu():
       ╔╝═╚═╣╚═╝║╚═╝║─║║──
       ╚════╩═══╩═══╝─╚╝──
 -------{ By No_Name.exe }-------
-                        v 1.5
+                        v 1.6
     """
     print(logo)
-    print("[1] Nmap Scan\n[2] Open Metasploit\n[3] Social Engineering\n[4] SQL Injection\n[5] Commix\n[6] Restart System\n[7] Become Windows (on/off)\n[8] Upgrade System\n[9] Password Found\n[10] System About\n[11] Create Trojan\n[12] IP-Tracer\n[13] Netdiscover\n[14] ThreatManager\n[15] Port Scan\n[16] InformationManager\n[99] Exit\n"
-    "\n[100] Update\n")
+    print("[1] Nmap Scan\n[2] Open Metasploit\n[3] Social Engineering\n[4] SQL Injection\n[5] Commix\n[6] Restart System\n[7] Become Windows (on/off)\n[8] Upgrade System\n[9] Password Found\n[10] System About\n[11] Create Trojan\n[12] IP-Tracer\n[13] Netdiscover\n[14] ThreatManager\n[15] Port Scan\n[16] InformationManager\n[17] Wifi Scan (eth0)\n[18] No_Escape (BETA)\n[99] Exit\n"
+    "\n[100] Update\n[101] Info\n")
     choice = input("Zusy ~$ ")
     if choice == "1":
         nmap_scan()
@@ -279,11 +326,17 @@ def main_menu():
     elif choice == "15":
         port_scan() 
     elif choice == "16":
-        InformationManager()                         
+        InformationManager()
+    elif choice == "17":
+        wifi_scan()
+    elif choice == "18":
+        No_Escape()                                 
     elif choice == "100":
-        update_tool()  
+        update_tool()
+    elif choice == "101":
+        info()    
     elif choice == "99":
-        print("\nThanks For Using!!!")
+        print("\nThanks for using!!!")
     else:
         print("\nError: Please Try Again")
         main_menu()
