@@ -2,6 +2,7 @@ import subprocess
 import importlib.util
 import netifaces
 from scapy.all import ARP, Ether, srp
+import os
 
 def install_package(package_name):
     try:
@@ -81,6 +82,7 @@ def main():
 
     local_ip = get_local_ip()
     if local_ip:
+        os.system('clear')
         print("Local IP Address:", local_ip)
         wifi_gateway = get_wifi_gateway()
         network_ip = local_ip.split('.')
