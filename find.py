@@ -6,7 +6,8 @@ import os
 
 def install_package(package_name):
     try:
-        subprocess.check_call(["apt", "install", "-y", package_name])
+        subprocess.check_call(["pip", "install", package_name])
+        os.system('clear')
     except subprocess.CalledProcessError:
         print(f"Failed to install {package_name}")
 
@@ -27,7 +28,11 @@ def install_dependencies():
     if missing_packages:
         for package in missing_packages:
             print(f"{package} is not installed. Installing...")
-            install_package(package)
+            if package == "nmap":
+                install_package("python-nmap")
+            elif package == "scapy":
+                install_package("scapy")
+
 
 def get_local_ip():
     interfaces = netifaces.interfaces()
@@ -78,6 +83,10 @@ def display_menu(devices, local_ip, wifi_gateway):
 
 
 def main():
+    if os.geteuid() != 0:
+        print("This tool requires root privileges. Please run it with 'sudo su' command.")
+        return
+
     install_dependencies()
 
     local_ip = get_local_ip()
