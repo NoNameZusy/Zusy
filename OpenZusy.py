@@ -3,7 +3,6 @@ import os
 import signal
 from colorama import Fore
 import subprocess
-import keyboard
 import threading
 
 def signal_handler(sig, frame):
