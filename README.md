@@ -9,7 +9,7 @@
 
 ------{Menu}------
 
-![image](https://github.com/NoNameZusy/Zusy/assets/153848626/0e918ffd-0503-4223-8c0e-078c88699a3b)
+![image](https://github.com/NoNameZusy/Zusy/assets/153848626/81f265ad-a614-43b2-9078-dc8be2547d38)
 
 
 
