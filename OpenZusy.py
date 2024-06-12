@@ -355,7 +355,7 @@ def hydra():
             print(Fore.RED + "" + result.stderr + Fore.WHITE)
         
     except Exception as e:
-        print(Fore.RED + f"[Error] An error occurred: {e}" + Fore.WHITE)
+        print(Fore.RED + f"{e}" + Fore.WHITE)
 
 def bettercap():
     time.sleep(0.5)
