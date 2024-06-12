@@ -352,10 +352,10 @@ def hydra():
         result = run(command, shell=True, capture_output=True, text=True)
         print(result.stdout)
         if result.stderr:
-            print(Fore.RED + "[Error] " + result.stderr)
+            print(Fore.RED + "" + result.stderr + Fore.WHITE)
         
     except Exception as e:
-        print(Fore.RED + f"[Error] An error occurred: {e}")
+        print(Fore.RED + f"[Error] An error occurred: {e}" + Fore.WHITE +)
 
 def bettercap():
     time.sleep(0.5)
