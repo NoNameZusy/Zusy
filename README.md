@@ -8,7 +8,7 @@
 
 
 # Menu :
-![image](https://github.com/NoNameZusy/Zusy/assets/153848626/81f265ad-a614-43b2-9078-dc8be2547d38)
+![image](https://github.com/NoNameZusy/Zusy/assets/153848626/4658f8ea-309a-41bd-99b9-81b9cc2a150b)
 
 
 
