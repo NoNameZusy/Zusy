@@ -13,6 +13,7 @@
 
 
 # Command :
+``` git clone https://github.com/NoNameZusy/Zusy.git ```
 
 ``` cd Zusy ```
 
