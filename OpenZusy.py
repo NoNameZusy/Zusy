@@ -97,7 +97,7 @@ def ip_tracer():
         return
     
     ip_tracer_command = f"curl ipinfo.io/{target_ip}"
-    print("Please wait...")
+    print(Fore.RED + "[Message] " + Fore.WHITE +f"Please wait...")
     process = run(ip_tracer_command, shell=True, capture_output=True, text=True)
     if process.stdout is not None:
         print(process.stdout)
