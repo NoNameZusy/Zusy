@@ -291,7 +291,7 @@ def threat_manager():
     if os.path.isdir("ThreatManager"):
         run("cd .. && cd ThreatManager && python3 OpenThreat.py", shell=True)
     else:
-        run("cd .. && git clone https://github.com/NoNatmmeZusy/ThreatManager.git", shell=True)
+        run("cd .. && git clone https://github.com/NoNameeZusy/ThreatManager.git", shell=True)
         run("cd .. && cd ThreatManager && python3 OpenThreat.py", shell=True)
         
 def ZusyFramework():
