@@ -291,7 +291,7 @@ def threat_manager():
     if os.path.isdir("ThreatManager"):
         run("cd .. && cd ThreatManager && python3 OpenThreat.py", shell=True)
     else:
-        run("cd .. && git clone https://github.com/NoNameeZusy/ThreatManager.git", shell=True)
+        run("cd .. && git clone https://github.com/NoNatmmeZusy/ThreatManager.git", shell=True)
         run("cd .. && cd ThreatManager && python3 OpenThreat.py", shell=True)
         
 def ZusyFramework():
@@ -303,7 +303,18 @@ def ZusyFramework():
         run("cd .. && cd ZusyFramework && python3 ZusyFramework.py", shell=True)
     else:
         run("cd .. && git clone https://github.com/NoNameZusy/ZusyFramework.git", shell=True)
-        run("cd .. && cd ZusyFramework && python3 ZusyFramework.py", shell=True)   
+        run("cd .. && cd ZusyFramework && python3 ZusyFramework.py", shell=True)
+        
+def KaliToolInstaller():
+    time.sleep(0.5)
+    print(Fore.BLUE + "[Status] " + Fore.WHITE +"KaliToolInstaller running...")
+    time.sleep(0.5)
+    clear_screen()
+    if os.path.isdir("KaliToolInstaller"):
+        run("cd .. && cd KaliToolInstaller && python3 chech.py", shell=True)
+    else:
+        run("cd .. && git clone https://github.com/NoNameZusy/KaliToolInstaller.git", shell=True)
+        run("cd .. && cd KaliToolInstaller && python3 check.py", shell=True)              
         
 def iplogger():
     time.sleep(0.5)
@@ -391,10 +402,10 @@ def main_menu():
       ╔╝═╚═╣╚═╝║╚═╝║─║║──
       ╚════╩═══╩═══╝─╚╝──
 -------{ By No_Name.exe }-------
-                        v 1.9
+                        v 2.0
     """
     print(logo)
-    print("[1] Nmap Scan\n[2] Open Metasploit\n[3] Social Engineering\n[4] SQL Injection\n[5] Commix\n[6] Restart System\n[7] Become Windows (on/off)\n[8] Upgrade System\n[9] Password Found\n[10] System About\n[11] Create Trojan\n[12] IP-Tracer\n[13] Netdiscover\n[14] ThreatManager\n[15] Port Scan\n[16] InformationManager\n[17] Wifi Scan (eth0)\n[18] No_Escape (BETA)\n[19] MITM Attack\n[20] ZusyFramework (BETA)\n[21] Hydra\n[22] Bettercap\n[23] Wireshark\n[24] IP-Logger\n[99] Exit\n"
+    print("[1] Nmap Scan\n[2] Open Metasploit\n[3] Social Engineering\n[4] SQL Injection\n[5] Commix\n[6] Restart System\n[7] Become Windows (on/off)\n[8] Upgrade System\n[9] Password Found\n[10] System About\n[11] Create Trojan\n[12] IP-Tracer\n[13] Netdiscover\n[14] ThreatManager\n[15] Port Scan\n[16] InformationManager\n[17] Wifi Scan (eth0)\n[18] No_Escape (BETA)\n[19] MITM Attack\n[20] ZusyFramework (BETA)\n[21] Hydra\n[22] Bettercap\n[23] Wireshark\n[24] IP-Logger\n[25] KaliToolInstaller [CHECK]\n[99] Exit\n"
     "\n[100] Update\n[101] Info\n")
     choice = input("Zusy ~$ ")
     if choice == "1":
@@ -444,7 +455,9 @@ def main_menu():
     elif choice == "23":
         wireshark()   
     elif choice == "24":
-        iplogger()                          
+        iplogger()
+    elif choice == "25":
+        KaliToolInstaller()                            
     elif choice == "100":
         update_tool()
     elif choice == "101":
